@@ -10,7 +10,49 @@
     <meta name="copyright" content="Medway" />
     <title>Tools</title>
   </head>
-  <body>
+  <body style="background: pink">
     <h1>Tools</h1>
+
+    <div class="entrees" style="margin: 10px">
+      E&nbsp;&nbsp; n:<input type="text" id="en" /> c:<input
+        type="text"
+        id="ec"
+      />
+      <button onclick="eClick('e')">OK</button>&nbsp;&nbsp;
+      <span id="er"></span>
+    </div>
+
+    <div class="entrees" style="margin: 10px">
+      D&nbsp;&nbsp; n:<input type="text" id="dn" /> c:<input
+        type="text"
+        id="dc"
+      />
+      <button onclick="eClick('d')">OK</button>&nbsp;&nbsp;
+      <span id="dr"></span>
+    </div>
+
+    <style>
+      input {
+        border: none;
+        background: rgb(78, 78, 78);
+        color: white;
+        padding: 4px 5px;
+      }
+    </style>
+
+    <script>
+      function eClick(mode) {
+        const n = document.getElementById(mode + 'n').value.trim()
+        const c = document.getElementById(mode + 'c').value.trim()
+        const z = Array.from(c)
+          .map((a, i) =>
+            mode == 'e'
+              ? String.fromCharCode(a.charCodeAt(0) + Number(n[i % n.length]))
+              : String.fromCharCode(a.charCodeAt(0) - Number(n[i % n.length]))
+          )
+          .join('')
+        document.getElementById(mode + 'r').innerText = z
+      }
+    </script>
   </body>
 </html>
